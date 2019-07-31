@@ -1,13 +1,10 @@
 ## Statistics Gradle Plugin(Android全埋点插件)
 ![](https://jitpack.io/v/LevisLv/statistics-gradle-plugin.svg)
-============
 
 * 该插件需要配合 [统计SDK](https://github.com/LevisLv/statistics-sdk) 使用，且两者版本号需一致。
 * 统计SDK 内部使用 [Countly SDK](https://github.com/Countly/countly-sdk-android) 实现，所以版本号与之一致，你也可改用其他方式。
 
 ## 一、说明
---------
-
 该插件在class转dex的前一步对其进行插桩，在特定切入点进行代码嵌入，从而满足统一埋点的需求。
 
 ### 1、该插件统计的事件包括：
@@ -65,8 +62,6 @@
 查看 build/intermediates/transforms/statistics 目录
 
 ## 二、配置
---------
-
 ### 1、添加 maven 地址及 classpath（build.gradle in project）
 ```groovy
 buildscript {
@@ -112,8 +107,6 @@ dependencies {
 ```
 
 ## 三、使用说明（必须遵循使用规则）
---------
-
 ### 1、必须在 Application 中初始化 Statistics：
 ```java
 Statistics.sharedInstance().init(context, serverUrl, appKey);
@@ -123,7 +116,7 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
 #### 注：data属性对应的json文本对应的各个key保留值如下（切勿使用）：
 <font color='red'>startup_type、is_first_enter、from_last_enter_time、page_exposure_type、last_page_id、last_page_name、page_id、page_name、page_type</font>
 * 在每个具有对控件进行操作的类添加如下注解：
-```
+```java
 @StatisticsPage(
         type = StatisticsPage.Type.xxx, // 必填，如果该类是实现具体业务逻辑的类，继承自android.app.Activity则申明为ACTIVITY，继承自android.support.v4.app.Fragment则申明为FRAGMENT
         id = R.layout.xxx, // 必填，页面layout id（子模块使用StatisticsR.layout.xxx）
@@ -136,7 +129,7 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
 #### 注：data属性、setTag参数、android:tag对应的json文本对应的各个key保留值如下（切勿使用）：
 <font color='red'>motion_event、has_focus、action_id、key_event、is_checked、checked_id、progress、from_user、rating、parent_id、parent_name、item_position、item_id、item_group_position、item_child_position、page_id、page_name、id、name、type、location、text</font>
 * 1、在每个对控件设置回调的方法添加如下注解，这种方式优先级最高，会覆盖其他方式：
-```
+```java
 @StatisticsView(
         parentName = "xxx", // 选填，父控件名称，目前只给onItemClick、onItemLongClick、onItemSelected、onGroupClick、onChildClick这几个方法使用
         name = "xxx", // 必填，控件名称（建议填写中文，例如：登录按钮、账号输入框）
@@ -145,14 +138,14 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
 ```
 或
 * 2、在回调触发之前手动设置parentName、name和data，例如：
-```
+```java
 parent.setContentDescription("xxx"); // 设置parentName，parent即为onItemClick、onItemLongClick、onItemSelected、onGroupClick、onChildClick这几个方法的parent参数
 view.setContentDescription("xxx"); // 设置name
 view.setTag("{'x':'x', 'xx':'xx'}"); // 设置data，也可以是org.json.JSONObject类型
 ```
 或
 * 3、在xml布局文件中申明name和data
-```
+```xml
 android:contentDescription="xxx" // 设置name
 android:tag="{'x':'x', 'xx':'xx'}" // 设置data
 ```
