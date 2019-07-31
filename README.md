@@ -1,8 +1,8 @@
 ## Statistics Gradle Plugin(Android 全埋点插件)
 ![](https://jitpack.io/v/LevisLv/statistics-gradle-plugin.svg)
 
-* 该插件需要配合 [统计SDK](https://github.com/LevisLv/statistics-sdk) 使用，且两者版本号需一致。
-* 统计SDK 内部使用 [Countly SDK](https://github.com/Countly/countly-sdk-android) 实现，所以版本号与之一致，你也可改用其他方式。
+* 该插件需要配合 [统计 SDK](https://github.com/LevisLv/statistics-sdk) 使用，且两者版本号需一致。
+* 统计 SDK 内部使用 [Countly SDK](https://github.com/Countly/countly-sdk-android) 实现，所以版本号与之一致，你也可改用其他方式。
 * 可 build [DEMO](https://github.com/LevisLv/statistics)，查看 app 模块的 build/intermediates/transforms/StatisticsTransform 目录
 
 ## 一、说明
