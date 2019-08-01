@@ -4,6 +4,7 @@ import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.FieldSpec
 import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.TypeSpec
+import kotlin.text.StringsKt
 
 import javax.lang.model.element.Modifier
 
@@ -56,10 +57,6 @@ class FinalRClassBuilder {
     }
 
     private ClassName getSupportAnnotationClass(String type) {
-        return ClassName.get(ANNOTATION_PACKAGE, capitalize(type, Locale.US) + 'Res')
-    }
-
-    private String capitalize(String param1, Locale param2) {
-        return param1.substring(0, 1).toUpperCase(param2) + param1.substring(1)
+        return ClassName.get(ANNOTATION_PACKAGE, StringsKt.capitalize(type) + 'Res')
     }
 }
