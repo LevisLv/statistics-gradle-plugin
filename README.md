@@ -3,7 +3,7 @@
 
 * 该插件需要配合 [统计 SDK](https://github.com/LevisLv/statistics-sdk) 使用，且两者版本号需一致。
 * 统计 SDK 内部使用 [Countly SDK](https://github.com/Countly/countly-sdk-android) 实现，所以版本号与之一致，你也可改用其他方式。
-* 可 build [DEMO](https://github.com/LevisLv/statistics)，查看 app 模块的 build/intermediates/transforms/StatisticsTransform 目录
+* build [DEMO](https://github.com/LevisLv/statistics) 后查看 app 模块的 build/intermediates/transforms/statistics 目录下，各个 Activity 和 Fragment 类的变化。
 
 ## 一、插件说明
 * 该插件在 class 转 dex 的前一步对其进行插桩，在特定切入点进行代码嵌入，从而满足统一埋点的需求。
@@ -15,7 +15,7 @@
 #### 事件名为：
 * common_AppEnter、common_AppExit
 * common_AppToFg、common_AppToBg
-#### ② 页面（android.app.Activity 和 android.support.v4.app.Fragment）的进入、退出
+#### ② 页面（android.app.Activity 和 androidx.fragment.app.Fragment）的进入、退出
 #### 事件名为：
 * common_PageEnter、common_PageExit
 #### ③ 控件（View 及其子类）的操作
@@ -68,14 +68,12 @@ build 源码后查看各个模块的 build/intermediates/transforms/statistics �
 repositories {
     ······
     maven { url 'https://www.jitpack.io' }
-    ······
 }
 
 dependencies {
     ······
     // gradle插件版本最低要求3.1.0
     classpath 'com.github.LevisLv:statistics-gradle-plugin:19.02.3'
-    ······
 }
 ```
 
@@ -118,7 +116,7 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
 * 在每个具有对控件进行操作的类添加如下注解：
 ```java
 @StatisticsPage(
-        type = StatisticsPage.Type.xxx, // 必填，如果该类是实现具体业务逻辑的类，继承自android.app.Activity则申明为ACTIVITY，继承自android.support.v4.app.Fragment则申明为FRAGMENT
+        type = StatisticsPage.Type.xxx, // 必填，如果该类是实现具体业务逻辑的类，继承自android.app.Activity则声明为ACTIVITY，继承自androidx.fragment.app.Fragment则声明为FRAGMENT
         id = R.layout.xxx, // 必填，页面layout id（子模块使用StatisticsR.layout.xxx）
         name = "xxx", // 必填，页面名称（建议填写中文，例如：首页、设置页、关于页）
         data = "{'x':'x', 'xx':'xx'}" // 选填，页面其他数据，必须遵循json规范，key、value均为String类型
@@ -138,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 ### 3、添加控件信息，以下三种方式等价：
-<font color='red'>此注解非必加，parentName 和 name 都是给人看的，表示这个控件代表什么意思，id 是给后台解析用的（设置了监听 id 肯定是有的）
+<font color='red'>此注解非必加，parentName 和 name 都是给人看的，表示这个控件代表什么意思，id 是给后台解析用的（设置了监听 id 肯定是有的）</font>
 #### 注：data 属性、setTag 参数、android:tag 对应的 json 文本对应的各个 key 保留值如下（切勿使用）：
 <font color='red'>motion_event、has_focus、action_id、key_event、is_checked、checked_id、progress、from_user、rating、parent_id、parent_name、item_position、item_id、item_group_position、item_child_position、page_id、page_name、id、name、type、location、text</font>
 * 1、在每个对控件设置回调的方法添加如下注解，这种方式优先级最高，会覆盖其他方式：
@@ -170,7 +168,7 @@ view.setContentDescription("xxx"); // 设置name
 view.setTag("{'x':'x', 'xx':'xx'}"); // 设置data，也可以是org.json.JSONObject类型
 ```
 或
-* 3、在xml布局文件中申明 name 和 data
+* 3、在 xml 布局文件中声明 name 和 data
 ```xml
 android:contentDescription="xxx" // 设置name
 android:tag="{'x':'x', 'xx':'xx'}" // 设置data
