@@ -4,6 +4,12 @@ import com.levislv.statistics.build.gradle.StatisticsPluginExtension
 import com.levislv.statistics.build.gradle.asm.StatisticsClassVisitor
 import org.gradle.api.Project
 
+/**
+ * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
+ */
 class StatisticsConfig {
     private static Project project
 

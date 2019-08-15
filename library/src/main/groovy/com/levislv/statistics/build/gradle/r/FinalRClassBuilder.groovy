@@ -10,6 +10,9 @@ import javax.lang.model.element.Modifier
 
 /**
  * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
  */
 class FinalRClassBuilder {
     public static final String ANNOTATION_PACKAGE = 'androidx.annotation'

@@ -28,6 +28,12 @@ import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
 
+/**
+ * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
+ */
 class StatisticsTransform extends Transform {
 
     private Project project

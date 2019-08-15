@@ -11,6 +11,9 @@ import java.util.regex.Pattern
 
 /**
  * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
  */
 class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
 

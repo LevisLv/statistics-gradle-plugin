@@ -9,6 +9,9 @@ import org.gradle.api.tasks.TaskAction
 
 /**
  * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
  */
 class RGenerator extends DefaultTask {
     private File outputDir

@@ -20,6 +20,12 @@ import org.gradle.api.file.ConfigurableFileCollection
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.function.Consumer
 
+/**
+ * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
+ */
 class StatisticsPlugin implements Plugin<Project> {
 
     @Override

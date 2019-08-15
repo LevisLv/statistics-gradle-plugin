@@ -2,6 +2,9 @@ package com.levislv.statistics.build.gradle.r
 
 /**
  * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
  */
 class ResourceSymbolListReader {
     private FinalRClassBuilder builder

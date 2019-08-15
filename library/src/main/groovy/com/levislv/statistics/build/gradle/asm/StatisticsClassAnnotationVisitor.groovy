@@ -8,6 +8,9 @@ import org.objectweb.asm.Opcodes
 
 /**
  * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
  */
 class StatisticsClassAnnotationVisitor extends AnnotationVisitor {
 

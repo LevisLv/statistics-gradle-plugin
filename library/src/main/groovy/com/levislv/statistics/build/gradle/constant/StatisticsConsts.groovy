@@ -2,6 +2,9 @@ package com.levislv.statistics.build.gradle.constant
 
 /**
  * @author levislv
+ * @email  levislv@levislv.com
+ * @blog   https://blog.levislv.com/
+ * @github https://github.com/levislv/
  */
 interface StatisticsConsts {
     String METHOD_VISITOR_OWNER_STATISTICS_ACTIVITY_HELPER = 'com/levislv/statisticssdk/plugin/StatisticsActivityHelper'
