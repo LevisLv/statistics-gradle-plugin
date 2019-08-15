@@ -5,8 +5,10 @@
 * 统计 SDK 内部使用 [Countly SDK](https://github.com/Countly/countly-sdk-android) 实现，所以版本号与之一致，你也可改用其他方式。
 * 可 build [DEMO](https://github.com/LevisLv/statistics)，查看 app 模块的 build/intermediates/transforms/StatisticsTransform 目录
 
-## 一、说明
-该插件在 class 转 dex 的前一步对其进行插桩，在特定切入点进行代码嵌入，从而满足统一埋点的需求。
+## 一、插件说明
+* 该插件在 class 转 dex 的前一步对其进行插桩，在特定切入点进行代码嵌入，从而满足统一埋点的需求。
+* 全埋点定义：预先收集上传用户的大部分行为数据，如启动、退出、页面浏览、点击、长按、元素展现等。
+* 全埋点应用举例：应用中，根据实际分析需求从中提取行为数据，以优化产品和服务，如漏斗分析、留存分析、事件分析等。
 
 ### 1、该插件统计的事件包括：
 #### ① 应用（Application）进入、退出、前台、后台
@@ -54,42 +56,39 @@
 * @butterknife.OnItemClick(R.id.xxx) void onItemClick(AdapterView<?>, View, int, long)
 * @butterknife.OnItemLongClick(R.id.xxx) boolean onItemLongClick(AdapterView<?>, View, int, long)
 * @butterknife.OnItemSelected(value = R.id.xxx, callback = OnItemSelected.Callback.ITEM_SELECTED) void onItemSelected(AdapterView<?>, View, int, long)
-
 ### 2、热力图统计
 #### 事件名为：
 * common_HeatMap
-
 ### 3、查看插桩后的class文件
-build 后查看各模块的 build/intermediates/transforms/StatisticsTransform 目录
+build 源码后查看各个模块的 build/intermediates/transforms/statistics 目录下，各个 Activity 和 Fragment 类的变化。
 
 ## 二、配置
 ### 1、添加 maven 地址及 classpath（build.gradle in project）
 ```groovy
-buildscript {
-    repositories {
-        ······
-        maven { url 'https://www.jitpack.io' }
-    }
+repositories {
+    ······
+    maven { url 'https://www.jitpack.io' }
+    ······
+}
 
-    dependencies {
-        ······
-        // 要求gradle插件版本最低3.1.0
-        classpath 'com.github.LevisLv:statistics-gradle-plugin:19.02.3'
-    }
+dependencies {
+    ······
+    // gradle插件版本最低要求3.1.0
+    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.02.3'
+    ······
 }
 ```
 
-### 2、引用插件并添加依赖（build.gradle in every module）
+### 2、引用插件并添加依赖（build.gradle in app module）
 <font color='red'>所有的 Android Application 和 Android Library 模块都需要加如下配置</font>
-
 ```groovy
 ······
 apply plugin: 'com.levislv.statistics'
 
 statistics {
-    enableCompileLog false // 是否打印编译日志（默认false）
-    enableHeatMap true // 是否开启热力图功能（默认true）
-    enableViewOnTouch false // 是否允许view的onTouch回调全埋点（默认false）
+    enableCompileLog true/false // 是否开启编译日志打印（默认false）
+    enableHeatMap true/false // 是否开启热力图功能（默认true）
+    enableViewOnTouch true/false // 是否允许view的onTouch回调全埋点（默认false）
 }
 
 android {
@@ -125,8 +124,21 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
         data = "{'x':'x', 'xx':'xx'}" // 选填，页面其他数据，必须遵循json规范，key、value均为String类型
 )
 ```
+* 举例：
+```java
+@StatisticsPage(
+        type = StatisticsPage.Type.ACTIVITY,
+        id = R.layout.activity_main,
+        name = "首页",
+        data = "{'a':'b', 'c':'d'}"
+)
+public class MainActivity extends AppCompatActivity {
+    ······
+}
+```
 
 ### 3、添加控件信息，以下三种方式等价：
+<font color='red'>此注解非必加，parentName 和 name 都是给人看的，表示这个控件代表什么意思，id 是给后台解析用的（设置了监听 id 肯定是有的）
 #### 注：data 属性、setTag 参数、android:tag 对应的 json 文本对应的各个 key 保留值如下（切勿使用）：
 <font color='red'>motion_event、has_focus、action_id、key_event、is_checked、checked_id、progress、from_user、rating、parent_id、parent_name、item_position、item_id、item_group_position、item_child_position、page_id、page_name、id、name、type、location、text</font>
 * 1、在每个对控件设置回调的方法添加如下注解，这种方式优先级最高，会覆盖其他方式：
@@ -136,6 +148,19 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
         name = "xxx", // 必填，控件名称（建议填写中文，例如：登录按钮、账号输入框）
         data = "{'x':'x', 'xx':'xx'}" // 选填，控件其他数据，必须遵循json规范，key、value均为String类型
 )
+```
+* 举例：
+```java
+btnSearch.setOnClickListener(new View.OnClickListener() {
+    @StatisticsView(
+            name = "搜索按钮",
+            data = "{'e':'f', 'g':'h'}"
+    )
+    @Override
+    public void onClick(View v) {
+        ······
+    }
+});
 ```
 或
 * 2、在回调触发之前手动设置 parentName、name 和 data，例如：
