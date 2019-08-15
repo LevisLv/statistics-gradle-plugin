@@ -304,7 +304,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_ACTIVITY_HELPER,
                 methodName,
-                "(Landroid/app/Activity;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_ACTIVITY}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
 
         mv.visitVarInsn(ALOAD, 0)
@@ -367,7 +367,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_ACTIVITY_HELPER,
                 methodName,
-                "(Landroid/app/Activity;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_ACTIVITY}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
 
         mv.visitInsn(RETURN)
@@ -393,12 +393,12 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_TOUCH_HELPER,
                 methodName,
-                "(Landroid/app/Activity;Ljava/lang/String;Landroid/view/MotionEvent;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_ACTIVITY}Ljava/lang/String;Landroid/view/MotionEvent;)V",
                 false)
         mv.visitVarInsn(ALOAD, 0)
         mv.visitVarInsn(ALOAD, 1)
         mv.visitMethodInsn(INVOKESPECIAL,
-                "android/support/v4/app/FragmentActivity",
+                this.superName,
                 methodName,
                 "(Landroid/view/MotionEvent;)Z",
                 false)
@@ -432,7 +432,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(Landroid/support/v4/app/Fragment;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
 
         mv.visitVarInsn(ALOAD, 0)
@@ -508,7 +508,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(Landroid/support/v4/app/Fragment;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
 
         mv.visitInsn(RETURN)

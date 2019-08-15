@@ -624,7 +624,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_ACTIVITY_HELPER,
                 methodName,
-                "(Landroid/app/Activity;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_ACTIVITY}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
     }
 
@@ -640,7 +640,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_TOUCH_HELPER,
                 methodName,
-                "(Landroid/app/Activity;Ljava/lang/String;Landroid/view/MotionEvent;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_ACTIVITY}Ljava/lang/String;Landroid/view/MotionEvent;)V",
                 false)
     }
 
@@ -662,7 +662,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(Landroid/support/v4/app/Fragment;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
     }
 
