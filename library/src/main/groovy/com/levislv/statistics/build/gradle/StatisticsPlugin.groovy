@@ -21,10 +21,11 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.function.Consumer
 
 /**
- * @author levislv
+ * @author LevisLv
  * @email  levislv@levislv.com
  * @blog   https://blog.levislv.com/
- * @github https://github.com/levislv/
+ * @book   https://book.levislv.com/
+ * @github https://github.com/LevisLv/
  */
 class StatisticsPlugin implements Plugin<Project> {
 

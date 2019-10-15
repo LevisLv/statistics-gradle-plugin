@@ -16,10 +16,11 @@ import org.objectweb.asm.commons.AdviceAdapter
 import java.util.regex.Pattern
 
 /**
- * @author levislv
+ * @author LevisLv
  * @email  levislv@levislv.com
  * @blog   https://blog.levislv.com/
- * @github https://github.com/levislv/
+ * @book   https://book.levislv.com/
+ * @github https://github.com/LevisLv/
  */
 class StatisticsMethodVisitor extends AdviceAdapter {
 

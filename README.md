@@ -73,7 +73,7 @@ repositories {
 dependencies {
     ······
     // gradle插件版本最低要求3.1.0
-    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.02.3'
+    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.09'
 }
 ```
 
@@ -100,7 +100,7 @@ android {
 
 dependencies {
     ······
-    implementation 'com.github.LevisLv:statistics-sdk:19.02.3'
+    implementation 'com.github.LevisLv:statistics-sdk:19.09'
 }
 ```
 

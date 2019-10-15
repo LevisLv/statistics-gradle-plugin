@@ -29,10 +29,11 @@ import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
 
 /**
- * @author levislv
+ * @author LevisLv
  * @email  levislv@levislv.com
  * @blog   https://blog.levislv.com/
- * @github https://github.com/levislv/
+ * @book   https://book.levislv.com/
+ * @github https://github.com/LevisLv/
  */
 class StatisticsTransform extends Transform {
 

@@ -5,10 +5,11 @@ import com.levislv.statistics.build.gradle.asm.StatisticsClassVisitor
 import org.gradle.api.Project
 
 /**
- * @author levislv
+ * @author LevisLv
  * @email  levislv@levislv.com
  * @blog   https://blog.levislv.com/
- * @github https://github.com/levislv/
+ * @book   https://book.levislv.com/
+ * @github https://github.com/LevisLv/
  */
 class StatisticsConfig {
     private static Project project
