@@ -87,7 +87,7 @@ statistics {
     enableCompileLog true/false // 是否开启编译日志打印（默认false）
     enableHeatMap true/false // 是否开启热力图（默认true）
     enableViewOnTouch true/false // 是否允许view的onTouch回调全埋点（默认false）
-    useAndroidX true // 是否使用AndroidX（默认true）
+    useAndroidX true/false // 是否使用AndroidX（默认true）
 }
 
 android {
