@@ -60,6 +60,6 @@ class FinalRClassBuilder {
     }
 
     private static ClassName getSupportAnnotationClass(String type) {
-        return ClassName.get(StatisticsConfig.useAndroidX() ? 'androidx.annotation' : 'android.support.annotation', "${type.substring(0, 1).toUpperCase() + type.substring(1)}Res")
+        return ClassName.get(StatisticsConfig.useAndroidX() ? 'androidx.annotation' : 'android.support.annotation', "${type.substring(0, 1).toUpperCase()}${type.substring(1)}Res")
     }
 }
