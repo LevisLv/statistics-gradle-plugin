@@ -20,8 +20,4 @@ class StatisticsPluginExtension {
      * 是否允许view的onTouch回调全埋点
      */
     boolean enableViewOnTouch = false
-    /**
-     * 是否使用AndroidX
-     */
-    boolean useAndroidX = true
 }

@@ -73,7 +73,7 @@ repositories {
 dependencies {
     ······
     // gradle插件版本最低要求3.1.0
-    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.10.30'
+    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.10.30.1'
 }
 ```
 
@@ -87,7 +87,6 @@ statistics {
     enableCompileLog true/false // 是否开启编译日志打印（默认false）
     enableHeatMap true/false // 是否开启热力图（默认true）
     enableViewOnTouch true/false // 是否允许view的onTouch回调全埋点（默认false）
-    useAndroidX true/false // 是否使用AndroidX（默认true）
 }
 
 android {
@@ -101,7 +100,7 @@ android {
 
 dependencies {
     ······
-    implementation 'com.github.LevisLv:statistics-sdk:19.10.30'
+    implementation 'com.github.LevisLv:statistics-sdk:19.10.30.1'
 }
 ```
 

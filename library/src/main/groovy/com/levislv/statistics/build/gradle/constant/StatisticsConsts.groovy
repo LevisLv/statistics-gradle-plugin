@@ -18,4 +18,5 @@ interface StatisticsConsts {
     String ANNOTATION_VISITOR_DESCRIPTOR_STATISTICS_VIEW = 'Lcom/levislv/statisticssdk/plugin/annotation/StatisticsView;'
 
     String CLASS_VISITOR_DESCRIPTOR_ACTIVITY = 'Landroid/app/Activity;'
+    String CLASS_VISITOR_DESCRIPTOR_FRAGMENT = 'Landroidx/fragment/app/Fragment;'
 }

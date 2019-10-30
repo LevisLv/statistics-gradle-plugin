@@ -663,7 +663,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(Ljava/lang/Object;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
     }
 
