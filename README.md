@@ -73,7 +73,7 @@ repositories {
 dependencies {
     ······
     // gradle插件版本最低要求3.1.0
-    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.09'
+    classpath 'com.github.LevisLv:statistics-gradle-plugin:19.10.30'
 }
 ```
 
@@ -85,8 +85,9 @@ apply plugin: 'com.levislv.statistics'
 
 statistics {
     enableCompileLog true/false // 是否开启编译日志打印（默认false）
-    enableHeatMap true/false // 是否开启热力图功能（默认true）
+    enableHeatMap true/false // 是否开启热力图（默认true）
     enableViewOnTouch true/false // 是否允许view的onTouch回调全埋点（默认false）
+    useAndroidX true // 是否使用AndroidX（默认true）
 }
 
 android {
@@ -100,7 +101,7 @@ android {
 
 dependencies {
     ······
-    implementation 'com.github.LevisLv:statistics-sdk:19.09'
+    implementation 'com.github.LevisLv:statistics-sdk:19.10.30'
 }
 ```
 
@@ -119,7 +120,7 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
         type = StatisticsPage.Type.xxx, // 必填，如果该类是实现具体业务逻辑的类，继承自android.app.Activity则声明为ACTIVITY，继承自androidx.fragment.app.Fragment则声明为FRAGMENT
         id = R.layout.xxx, // 必填，页面layout id（子模块使用StatisticsR.layout.xxx）
         name = "xxx", // 必填，页面名称（建议填写中文，例如：首页、设置页、关于页）
-        data = "{'x':'x', 'xx':'xx'}" // 选填，页面其他数据，必须遵循json规范，key、value均为String类型
+        data = "{'key0':'value0', 'key1':'value1', ···}" // 选填，页面其他数据，必须遵循json规范，key、value均为String类型
 )
 ```
 * 举例：
@@ -128,9 +129,20 @@ Statistics.sharedInstance().init(context, serverUrl, appKey);
         type = StatisticsPage.Type.ACTIVITY,
         id = R.layout.activity_main,
         name = "首页",
-        data = "{'a':'b', 'c':'d'}"
+        data = "{'key0':'value0', 'key1':'value1', ···}"
 )
 public class MainActivity extends AppCompatActivity {
+    ······
+}
+```
+```java
+@StatisticsPage(
+        type = StatisticsPage.Type.FRAGMENT,
+        id = R.layout.fragment_about,
+        name = "关于页",
+        data = "{'key0':'value0', 'key1':'value1', ···}"
+)
+public class AboutFragment extends Fragment {
     ······
 }
 ```
@@ -144,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 @StatisticsView(
         parentName = "xxx", // 选填，父控件名称，目前只给onItemClick、onItemLongClick、onItemSelected、onGroupClick、onChildClick这几个方法使用
         name = "xxx", // 必填，控件名称（建议填写中文，例如：登录按钮、账号输入框）
-        data = "{'x':'x', 'xx':'xx'}" // 选填，控件其他数据，必须遵循json规范，key、value均为String类型
+        data = "{'key0':'value0', 'key1':'value1', ···}" // 选填，控件其他数据，必须遵循json规范，key、value均为String类型
 )
 ```
 * 举例：
@@ -152,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 btnSearch.setOnClickListener(new View.OnClickListener() {
     @StatisticsView(
             name = "搜索按钮",
-            data = "{'e':'f', 'g':'h'}"
+            data = "{'key0':'value0', 'key1':'value1', ···}"
     )
     @Override
     public void onClick(View v) {
@@ -165,11 +177,11 @@ btnSearch.setOnClickListener(new View.OnClickListener() {
 ```java
 parent.setContentDescription("xxx"); // 设置parentName，parent即为onItemClick、onItemLongClick、onItemSelected、onGroupClick、onChildClick这几个方法的parent参数
 view.setContentDescription("xxx"); // 设置name
-view.setTag("{'x':'x', 'xx':'xx'}"); // 设置data，也可以是org.json.JSONObject类型
+view.setTag("{'key0':'value0', 'key1':'value1', ···}"); // 设置data，也可以是org.json.JSONObject类型
 ```
 或
 * 3、在 xml 布局文件中声明 name 和 data
 ```xml
 android:contentDescription="xxx" // 设置name
-android:tag="{'x':'x', 'xx':'xx'}" // 设置data
+android:tag="{'key0':'value0', 'key1':'value1', ···}" // 设置data
 ```

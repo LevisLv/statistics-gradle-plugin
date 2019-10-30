@@ -290,7 +290,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
             return
         }
 
-        MethodVisitor mv = cw.visitMethod(ACC_PROTECTED,
+        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC,
                 methodName,
                 "()V",
                 null,
@@ -339,7 +339,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
             }
         }
 
-        MethodVisitor mv = cw.visitMethod(ACC_PROTECTED,
+        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC,
                 methodName,
                 descriptor,
                 null,
@@ -418,7 +418,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
             return
         }
 
-        MethodVisitor mv = cw.visitMethod(ACC_PROTECTED,
+        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC,
                 methodName,
                 "()V",
                 null,
@@ -433,7 +433,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(Ljava/lang/Object;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
 
         mv.visitVarInsn(ALOAD, 0)
@@ -444,7 +444,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
                 false)
 
         mv.visitInsn(RETURN)
-        mv.visitMaxs(4, 1)
+        mv.visitMaxs(5, 1)
         mv.visitEnd()
     }
 
@@ -468,12 +468,12 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
                 descriptor = '(Z)V'
                 maxLocals = 2
             }
-        } else {
+        } else if ('setUserVisibleHint'.equals(methodName)) {
             descriptor = '(Z)V'
             maxLocals = 2
         }
 
-        MethodVisitor mv = cw.visitMethod(ACC_PROTECTED,
+        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC,
                 methodName,
                 descriptor,
                 null,
@@ -491,7 +491,7 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
             } else {
                 mv.visitVarInsn(ALOAD, 0)
             }
-        } else {
+        } else if ('setUserVisibleHint'.equals(methodName)) {
             mv.visitVarInsn(ALOAD, 0)
             mv.visitVarInsn(ILOAD, 1)
         }
@@ -509,11 +509,11 @@ class StatisticsClassVisitor extends ClassVisitor implements Opcodes {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(Ljava/lang/Object;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
 
         mv.visitInsn(RETURN)
-        mv.visitMaxs(4, maxLocals)
+        mv.visitMaxs(5, maxLocals)
         mv.visitEnd()
     }
 }

@@ -64,7 +64,7 @@ class StatisticsTransform extends Transform {
         return false
     }
 
-    private String getPackageName(BaseVariant variant) {
+    private static String getPackageName(BaseVariant variant) {
         XmlSlurper slurper = new XmlSlurper(false, false)
         List<File> list = new ArrayList<>(variant.sourceSets.size())
         variant.sourceSets.forEach(new Consumer<SourceProvider>() {
@@ -91,7 +91,7 @@ class StatisticsTransform extends Transform {
             outputProvider.deleteAll()
         }
 
-        DomainObjectSet<BaseVariant> baseVariants
+        DomainObjectSet<BaseVariant> baseVariants = null
         if (project.plugins.hasPlugin(AppPlugin.class)) {
             baseVariants = project.extensions.getByType(AppExtension).applicationVariants
         } else if (project.plugins.hasPlugin(LibraryPlugin.class)) {

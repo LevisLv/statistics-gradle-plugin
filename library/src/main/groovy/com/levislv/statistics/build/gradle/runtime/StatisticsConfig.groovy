@@ -31,4 +31,8 @@ class StatisticsConfig {
     static boolean enableViewOnTouch() {
         return getPluginExtension().enableViewOnTouch
     }
+
+    static boolean useAndroidX() {
+        return getPluginExtension().useAndroidX
+    }
 }

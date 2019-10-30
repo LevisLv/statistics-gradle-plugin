@@ -44,7 +44,7 @@ class StatisticsPlugin implements Plugin<Project> {
 
     // Parse the variant's main manifest file in order to get the package id which is used to create
     // R.java in the right place.
-    private String getPackageName(BaseVariant variant) {
+    private static String getPackageName(BaseVariant variant) {
         XmlSlurper slurper = new XmlSlurper(false, false)
         List<File> list = new ArrayList<>(variant.sourceSets.size())
         variant.sourceSets.forEach(new Consumer<SourceProvider>() {
@@ -61,9 +61,9 @@ class StatisticsPlugin implements Plugin<Project> {
     }
 
     // 配置StatisticsR
-    void configureStatisticsRGeneration(Project project, DomainObjectSet<BaseVariant> variants) {
+    static void configureStatisticsRGeneration(Project project, DomainObjectSet<BaseVariant> variants) {
         variants.all { variant ->
-            File outputDir = FilesKt.resolve(project.buildDir, "generated/source/statistics_r/${variant.dirName}")
+            File outputDir = new File("${project.buildDir}/generated/source/statistics_r/${variant.dirName}")
 
             String rPackage = getPackageName(variant)
             AtomicBoolean once = new AtomicBoolean()
@@ -83,7 +83,8 @@ class StatisticsPlugin implements Plugin<Project> {
                     }
 
                     ConfigurableFileCollection rFile = project.files(file).builtBy(processResources)
-                    project.tasks.create("generate${StringsKt.capitalize(variant.name)}StatisticsR", RGenerator.class, { generator ->
+                    String variantName = (variant.name == null || variant.name.length() == 0 || Character.isUpperCase(variant.name.charAt(0))) ? variant.name : variant.name.substring(0, 1).toUpperCase() + variant.name.substring(1)
+                    project.tasks.create("generate${variantName}StatisticsR", RGenerator.class, { generator ->
                         generator.outputDir = outputDir
                         generator.RFile = rFile
                         generator.packageName = rPackage
@@ -96,7 +97,7 @@ class StatisticsPlugin implements Plugin<Project> {
     }
 
     // 配置StatisticsTransform
-    void configureStatisticsTransform(Project project, BaseExtension extension) {
+    static void configureStatisticsTransform(Project project, BaseExtension extension) {
         project.extensions.create('statistics', StatisticsPluginExtension)
 
         StatisticsConfig.project = project

@@ -186,13 +186,13 @@ class StatisticsMethodVisitor extends AdviceAdapter {
                 if ('onPause'.equals(this.name) && '()V'.equals(this.descriptor)) {
                     this.cv.onFragmentPauseMissing = false
 
-                    onFragmentLifecycleCallbacksMethodExit('onPause')
+                    onFragmentLifecycleCallbacksMethodCalled('onPause')
                 } else
                 // android.support.v4.app.Fragment#onDestroy()
                 if ('onDestroy'.equals(this.name) && '()V'.equals(this.descriptor)) {
                     this.cv.onFragmentDestroyMissing = false
 
-                    onFragmentLifecycleCallbacksMethodExit('onDestroy')
+                    onFragmentLifecycleCallbacksMethodCalled('onDestroy')
                 }
             }
 
@@ -582,25 +582,25 @@ class StatisticsMethodVisitor extends AdviceAdapter {
                     if ('onViewCreated'.equals(this.name) && '(Landroid/view/View;Landroid/os/Bundle;)V'.equals(this.descriptor)) {
                         this.cv.onFragmentViewCreatedMissing = false
 
-                        onFragmentLifecycleCallbacksMethodExit('onViewCreated')
+                        onFragmentLifecycleCallbacksMethodCalled('onViewCreated')
                     } else
                     // android.support.v4.app.Fragment#onResume()
                     if ('onResume'.equals(this.name) && '()V'.equals(this.descriptor)) {
                         this.cv.onFragmentResumeMissing = false
 
-                        onFragmentLifecycleCallbacksMethodExit('onResume')
+                        onFragmentLifecycleCallbacksMethodCalled('onResume')
                     } else
                     // android.support.v4.app.Fragment#setUserVisibleHint(boolean)
                     if ('setUserVisibleHint'.equals(this.name) && '(Z)V'.equals(this.descriptor)) {
                         this.cv.setUserVisibleHintMissing = false
 
-                        onFragmentLifecycleCallbacksMethodExit('setUserVisibleHint')
+                        onFragmentLifecycleCallbacksMethodCalled('setUserVisibleHint')
                     } else
                     // android.support.v4.app.Fragment#onHiddenChanged(boolean)
                     if ('onHiddenChanged'.equals(this.name) && '(Z)V'.equals(this.descriptor)) {
                         this.cv.onHiddenChangedMissing = false
 
-                        onFragmentLifecycleCallbacksMethodExit('onHiddenChanged')
+                        onFragmentLifecycleCallbacksMethodCalled('onHiddenChanged')
                     }
                 }
             }
@@ -650,7 +650,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
      *
      * @param methodName
      */
-    private void onFragmentLifecycleCallbacksMethodExit(String methodName) {
+    private void onFragmentLifecycleCallbacksMethodCalled(String methodName) {
         if (methodName == null) {
             return
         }
@@ -663,7 +663,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESTATIC,
                 StatisticsConsts.METHOD_VISITOR_OWNER_STATISTICS_FRAGMENT_HELPER,
                 methodName,
-                "(${StatisticsConsts.CLASS_VISITOR_DESCRIPTOR_FRAGMENT}Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
+                "(Ljava/lang/Object;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V",
                 false)
     }
 

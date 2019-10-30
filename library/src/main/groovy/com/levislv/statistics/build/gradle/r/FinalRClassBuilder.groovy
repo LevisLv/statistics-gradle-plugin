@@ -1,10 +1,10 @@
 package com.levislv.statistics.build.gradle.r
 
+import com.levislv.statistics.build.gradle.runtime.StatisticsConfig
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.FieldSpec
 import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.TypeSpec
-import kotlin.text.StringsKt
 
 import javax.lang.model.element.Modifier
 
@@ -16,7 +16,6 @@ import javax.lang.model.element.Modifier
  * @github https://github.com/LevisLv/
  */
 class FinalRClassBuilder {
-    public static final String ANNOTATION_PACKAGE = 'androidx.annotation'
     public static final String[] SUPPORTED_TYPES = ['anim', 'array', 'attr', 'bool', 'color', 'dimen', 'drawable', 'id', 'integer', 'layout', 'menu', 'plurals', 'string', 'style', 'styleable']
 
     private String packageName
@@ -60,7 +59,7 @@ class FinalRClassBuilder {
         resourceType.addField(fieldSpecBuilder.build())
     }
 
-    private ClassName getSupportAnnotationClass(String type) {
-        return ClassName.get(ANNOTATION_PACKAGE, StringsKt.capitalize(type) + 'Res')
+    private static ClassName getSupportAnnotationClass(String type) {
+        return ClassName.get(StatisticsConfig.useAndroidX() ? 'androidx.annotation' : 'android.support.annotation', "${type.substring(0, 1).toUpperCase() + type.substring(1)}Res")
     }
 }
