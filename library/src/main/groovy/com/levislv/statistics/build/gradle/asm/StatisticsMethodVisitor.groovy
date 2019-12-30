@@ -676,7 +676,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
      */
     private void onViewHandleMethodEnter(String methodName, int viewParamIndex, StatisticsMethodParam[] otherParams) {
         // 使用了StatisticsView注解，覆盖已有contentDescription
-        if (this.view.pkgName != null && this.view.name != null) {
+        if (this.view.name != null) {
             // view.setContentDescription(this.view.name);
             mv.visitVarInsn(ALOAD, viewParamIndex)
             mv.visitLdcInsn(this.view.name == '' ? 'null' : this.view.name)
@@ -759,7 +759,7 @@ class StatisticsMethodVisitor extends AdviceAdapter {
      */
     private void onViewHandledMethodLambdaEnter(String methodName, int viewParamIndex, StatisticsMethodParam[] otherParams) {
         // 使用了StatisticsView注解，覆盖已有contentDescription
-        if (this.view.pkgName != null && this.view.name != null) {
+        if (this.view.name != null) {
             // view.setContentDescription(this.view.name);
             mv.visitVarInsn(ALOAD, viewParamIndex)
             mv.visitLdcInsn(this.view.name == '' ? 'null' : this.view.name)

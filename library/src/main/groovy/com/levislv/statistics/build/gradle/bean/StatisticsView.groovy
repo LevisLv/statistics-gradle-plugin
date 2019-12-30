@@ -8,7 +8,6 @@ package com.levislv.statistics.build.gradle.bean
  * @github https://github.com/LevisLv/
  */
 class StatisticsView {
-    String pkgName
     String parentName = ''
     String name
     String data = '{}'
